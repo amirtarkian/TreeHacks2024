@@ -1,0 +1,44 @@
+/* map.css */
+
+/* Style for the map container */
+.map-container {
+    height: 400px; /* Set the height of the map */
+    width: 100%; /* Set the width of the map */
+    margin-top: 20px; /* Add margin to separate it from other elements */
+  }
+  
+  /* Style for the Leaflet map */
+  .leaflet-map {
+    height: 100%; /* Ensure the map fills the container */
+    width: 100%; /* Ensure the map fills the container */
+  }
+  
+  /* Style for Leaflet popups */
+  .leaflet-popup-content-wrapper {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+  }
+  
+  /* Style for Leaflet popup close button */
+  .leaflet-popup-close-button {
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 14px;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  /* Style for Leaflet popup close button on hover */
+  .leaflet-popup-close-button:hover {
+    color: #000;
+  }
+  
