@@ -1,9 +1,9 @@
-import React from "react";
-import "../pages/Home.css";
-import { useState } from "react";
-import StatsInput from "../components/StatsInput/StatsInput";
+import React, { useState } from "react";
 import Dropdown from "../components/Dropdown/Dropdown";
+import MapComponent from "../components/Map/Map";
+import StatsInput from "../components/StatsInput/StatsInput";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
+import "../pages/Home.css";
 
 export default function Home() {
   // State for storing input values
@@ -80,9 +80,13 @@ export default function Home() {
         />
       </div>
 
-      {/* <div>
+      <div>
         <SubmitButton label="Submit" onClick={handleSubmitClick} />
-      </div> */}
+      </div>
+
+      <div>
+        <MapComponent /> {/* Include the MapComponent here */}
+      </div>
     </div>
   );
 }

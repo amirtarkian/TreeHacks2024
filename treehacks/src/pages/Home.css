@@ -1,3 +1,5 @@
+/* home.css */
+
 .statsinput {
   flex: 1;
   display: flex;
@@ -14,11 +16,11 @@
 
 .parentContainer {
   display: flex;
-  flex-direction: column;
-  align-items: left; /* Left justify the content */
-  width: 50%;
-  margin-left: 10%;
-  margin-right: auto;
+  flex-direction: row; /* Change to row to align items horizontally */
+  align-items: flex-start; /* Align items to the top */
+  justify-content: center; /* Center items horizontally */
+  width: 80%; /* Adjust width as needed */
+  margin: 20px; /* Center the container horizontally */
 }
 
 .dropdownContainer {
@@ -26,6 +28,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: left;
-  margin-left: -9%; /* Adjust as needed */
   max-width: 50%;
+}
+
+.map-container {
+  width: 50%; /* Take up 50% of the parent container's width */
+  margin-left: 20px; /* Add margin for spacing */
+  margin-top: 20px;
 }
