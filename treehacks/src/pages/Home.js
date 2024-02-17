@@ -14,7 +14,24 @@ export default function Home() {
   const [nutrientContent, setNutrientContent] = useState("");
   const [soilMoisture, setSoilMoisture] = useState("");
   const [temperature, setTemperature] = useState("");
+  const [file, setFile] = useState("");
+  const [showMap, setShowMap] = useState(false);
 
+  const handleFileChange = (event) => {
+    // Step 3
+    setFile(event.target.files[0]);
+  };
+
+  const handleSubmit = () => {
+    // Step 4
+    if (file !== null) {
+      setShowMap(true);
+    } else {
+      console.log("No file selected.");
+    }
+
+    console.log("button clicked");
+  };
   // State for storing the selected option from the dropdown
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -31,10 +48,6 @@ export default function Home() {
 
   const handleDropdownChange = (e) => {
     setSelectedOption(e.target.value);
-  };
-
-  const handleSubmitClick = () => {
-    console.log("Submit button clicked");
   };
 
   return (
@@ -94,15 +107,10 @@ export default function Home() {
           />
         </div>
         <div className="rightContainer">
-          <div>
-            <MapComponent /> {/* Include the MapComponent here */}
-          </div>
-          <div className="imageUploadContainer">
-            <ImageUpload />{" "}
-          </div>
-          <div>
-            <SubmitButton label="Submit" onClick={handleSubmitClick} />
-          </div>
+          <ImageUpload onChange={(e) => setFile(e.target.files[0])} />{" "}
+          {/* Always visible */}
+          {showMap && <MapComponent />} {/* Conditionally shown */}
+          <SubmitButton label="Submit" onClick={handleSubmit} />
         </div>
       </div>
     </div>
