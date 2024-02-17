@@ -6,69 +6,83 @@ import Dropdown from "../components/Dropdown/Dropdown";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 
 export default function Home() {
-  const [inputValue, setInputValue] = useState("");
+  // State for storing input values
+  const [soilType, setSoilType] = useState("");
+  const [soilPH, setSoilPH] = useState("");
+  const [nutrientContent, setNutrientContent] = useState("");
+  const [soilMoisture, setSoilMoisture] = useState("");
+  const [temperature, setTemperature] = useState("");
 
-  const handleChange = (e) => {
-    setInputValue(e.target.value);
+  // State for storing the selected option from the dropdown
+  const [selectedOption, setSelectedOption] = useState("");
+
+  // Options for the dropdown
+  const options = [
+    { label: "Corn", value: "corn" },
+    { label: "Tomatoes", value: "tomatoes" },
+  ];
+
+  // Separate handleChange functions for each input and the dropdown
+  const handleInputChange = (e, setter) => {
+    setter(e.target.value);
+  };
+
+  const handleDropdownChange = (e) => {
     setSelectedOption(e.target.value);
   };
 
-  const [selectedOption, setSelectedOption] = useState("");
-  const options = [
-    { label: "Option 1", value: "option1" },
-    { label: "Option 2", value: "option2" },
-  ];
   const handleSubmitClick = () => {
     console.log("Submit button clicked");
   };
 
   return (
-    <div>
+    <div className="parentContainer">
+      <div className="dropdownContainer">
+        <h2>Select a Crop</h2>
+        <Dropdown
+          options={options}
+          selected={selectedOption}
+          onChange={handleDropdownChange}
+        />
+      </div>
       <div className="statsinput">
         <StatsInput
           type="text"
           placeholder="Soil Type"
-          value={inputValue}
-          onChange={handleChange}
+          value={soilType}
+          onChange={(e) => handleInputChange(e, setSoilType)}
         />
 
         <StatsInput
           type="text"
           placeholder="Soil pH"
-          value={inputValue}
-          onChange={handleChange}
+          value={soilPH}
+          onChange={(e) => handleInputChange(e, setSoilPH)}
         />
         <StatsInput
           type="text"
           placeholder="Nutrient Content "
-          value={inputValue}
-          onChange={handleChange}
+          value={nutrientContent}
+          onChange={(e) => handleInputChange(e, setNutrientContent)}
         />
 
         <StatsInput
           type="text"
           placeholder="Soil Moisture"
-          value={inputValue}
-          onChange={handleChange}
+          value={soilMoisture}
+          onChange={(e) => handleInputChange(e, setSoilMoisture)}
         />
         <StatsInput
           type="text"
           placeholder="Temperature"
-          value={inputValue}
-          onChange={handleChange}
+          value={temperature}
+          onChange={(e) => handleInputChange(e, setTemperature)}
         />
       </div>
-      <div className="dropdown">
-        <h2>Select an Option</h2>
-        <Dropdown
-          options={options}
-          selected={selectedOption}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
+
+      {/* <div>
         <SubmitButton label="Submit" onClick={handleSubmitClick} />
-      </div>
+      </div> */}
     </div>
   );
 }

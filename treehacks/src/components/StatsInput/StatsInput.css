@@ -3,7 +3,7 @@
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: calc(30%); /* Adjusting width to account for padding */
+  width: calc(50%); /* Adjusting width to account for padding */
   box-sizing: border-box; /* Makes sure the padding doesn't affect the overall width */
 }
 
