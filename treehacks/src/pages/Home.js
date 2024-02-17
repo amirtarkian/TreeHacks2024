@@ -37,15 +37,16 @@ export default function Home() {
 
   return (
     <div className="parentContainer">
-      <div className="dropdownContainer">
-        <h2>Select a Crop</h2>
-        <Dropdown
-          options={options}
-          selected={selectedOption}
-          onChange={handleDropdownChange}
-        />
-      </div>
-      <div className="statsinput">
+      <div className="leftContainer">
+        <div className="dropdownContainer">
+          <h2>Select a Crop</h2>
+          <Dropdown
+            options={options}
+            selected={selectedOption}
+            onChange={handleDropdownChange}
+          />
+        </div>
+        <div className="statsinput">
         <StatsInput
           type="text"
           placeholder="Soil Type"
@@ -78,14 +79,16 @@ export default function Home() {
           value={temperature}
           onChange={(e) => handleInputChange(e, setTemperature)}
         />
+        <div>
+          <SubmitButton label="Submit" onClick={handleSubmitClick} />
+        </div>
       </div>
-
-      <div>
-        <SubmitButton label="Submit" onClick={handleSubmitClick} />
+      <div className="rightContainer">
+        <div>
+          <MapComponent /> {/* Include the MapComponent here */}
+        </div>
       </div>
-
-      <div>
-        <MapComponent /> {/* Include the MapComponent here */}
+      
       </div>
     </div>
   );
