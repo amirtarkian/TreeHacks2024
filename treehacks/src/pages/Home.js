@@ -5,6 +5,7 @@ import StatsInput from "../components/StatsInput/StatsInput";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 import "../pages/Home.css";
 import AppTitle from "../components/AppTitle/AppTitle";
+import ImageUpload from "../components/ImageUpload/ImageUpload";
 
 export default function Home() {
   // State for storing input values
@@ -91,13 +92,16 @@ export default function Home() {
             value={temperature}
             onChange={(e) => handleInputChange(e, setTemperature)}
           />
-          <div>
-            <SubmitButton label="Submit" onClick={handleSubmitClick} />
-          </div>
         </div>
         <div className="rightContainer">
           <div>
             <MapComponent /> {/* Include the MapComponent here */}
+          </div>
+          <div className="imageUploadContainer">
+            <ImageUpload />{" "}
+          </div>
+          <div>
+            <SubmitButton label="Submit" onClick={handleSubmitClick} />
           </div>
         </div>
       </div>
