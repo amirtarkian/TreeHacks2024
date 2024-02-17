@@ -9,6 +9,7 @@ function ImageUpload() {
       let img = e.target.files[0];
       setSelectedImage(URL.createObjectURL(img));
     }
+    console.log("selectedImage: ", selectedImage);
   };
 
   return (
