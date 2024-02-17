@@ -1,27 +1,15 @@
-import React, { useState } from "react";
-import "../ImageUpload/ImageUpload.css";
-
-function ImageUpload() {
-  const [selectedImage, setSelectedImage] = useState(null);
-
+function ImageUpload({ onFileSelect }) {
+  // Corrected props destructuring
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       let img = e.target.files[0];
-      setSelectedImage(URL.createObjectURL(img));
+      onFileSelect(img); // Directly call onFileSelect passed as prop
     }
-    console.log("selectedImage: ", selectedImage);
   };
 
   return (
     <div className="image-upload-container">
       <input type="file" onChange={handleImageChange} />
-      {selectedImage && (
-        <img
-          src={selectedImage}
-          alt="Preview"
-          style={{ maxWidth: "100%", height: "auto" }}
-        />
-      )}
     </div>
   );
 }

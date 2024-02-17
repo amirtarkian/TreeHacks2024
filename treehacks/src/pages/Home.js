@@ -18,13 +18,17 @@ export default function Home() {
   const [showMap, setShowMap] = useState(false);
 
   const handleFileChange = (event) => {
-    // Step 3
-    setFile(event.target.files[0]);
+    const file = event.target.files[0]; // Access the file
+    if (file) {
+      setFile(file);
+      console.log("File name: ", file.name); // Print out the file name
+    }
   };
 
   const handleSubmit = () => {
     // Step 4
-    if (file !== null) {
+    if (file) {
+      console.log("File name: ", file.name);
       setShowMap(true);
     } else {
       console.log("No file selected.");
@@ -107,9 +111,8 @@ export default function Home() {
           />
         </div>
         <div className="rightContainer">
-          <ImageUpload onChange={(e) => setFile(e.target.files[0])} />{" "}
-          {/* Always visible */}
-          {showMap && <MapComponent />} {/* Conditionally shown */}
+          <ImageUpload onFileSelect={(selectedFile) => setFile(selectedFile)} />
+          {showMap && <MapComponent />}
           <SubmitButton label="Submit" onClick={handleSubmit} />
         </div>
       </div>
