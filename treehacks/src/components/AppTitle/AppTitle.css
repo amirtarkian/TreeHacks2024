@@ -1,0 +1,21 @@
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px; /* Width of the cursor */
+  height: 1em; /* Height to match the font */
+  background-color: currentColor; /* Match the color of the text */
+  animation: blink 1s infinite; /* Use the blink animation, adjust timing as desired */
+}
+
+.title {
+  color: rgb(4, 62, 4);
+}

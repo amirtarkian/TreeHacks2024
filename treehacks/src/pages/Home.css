@@ -2,7 +2,9 @@
 
 .parentContainer {
   display: flex;
-  justify-content: space-between; /* Distribute items evenly along the main axis */
+
+  justify-content: space-between;
+  flex-direction: column; /* Distribute items evenly along the main axis */
 }
 
 .leftContainer {
@@ -29,4 +31,9 @@
   width: 80%; /* Adjust width as needed */
   margin-top: 20px;
   margin-right: 20px; /* Add margin to the right side */
+}
+.bannerContainer img {
+  width: 100%;
+  max-height: 450px; /* Desired height */
+  object-fit: cover; /* Adjust the fit */
 }

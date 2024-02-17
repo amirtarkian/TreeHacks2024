@@ -4,6 +4,7 @@ import MapComponent from "../components/Map/Map";
 import StatsInput from "../components/StatsInput/StatsInput";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 import "../pages/Home.css";
+import AppTitle from "../components/AppTitle/AppTitle";
 
 export default function Home() {
   // State for storing input values
@@ -37,6 +38,17 @@ export default function Home() {
 
   return (
     <div className="parentContainer">
+      <div className="bannerContainer">
+        <img
+          src={`${process.env.PUBLIC_URL}/farmland.png`}
+          alt="Farmland"
+          style={{ width: "100%", height: "auto" }}
+        />
+      </div>
+      <div className="titleContainer">
+        {" "}
+        <AppTitle />
+      </div>
       <div className="leftContainer">
         <div className="dropdownContainer">
           <h2>Select a Crop</h2>
@@ -47,48 +59,47 @@ export default function Home() {
           />
         </div>
         <div className="statsinput">
-        <StatsInput
-          type="text"
-          placeholder="Soil Type"
-          value={soilType}
-          onChange={(e) => handleInputChange(e, setSoilType)}
-        />
+          <StatsInput
+            type="text"
+            placeholder="Soil Type"
+            value={soilType}
+            onChange={(e) => handleInputChange(e, setSoilType)}
+          />
 
-        <StatsInput
-          type="text"
-          placeholder="Soil pH"
-          value={soilPH}
-          onChange={(e) => handleInputChange(e, setSoilPH)}
-        />
-        <StatsInput
-          type="text"
-          placeholder="Nutrient Content "
-          value={nutrientContent}
-          onChange={(e) => handleInputChange(e, setNutrientContent)}
-        />
+          <StatsInput
+            type="text"
+            placeholder="Soil pH"
+            value={soilPH}
+            onChange={(e) => handleInputChange(e, setSoilPH)}
+          />
+          <StatsInput
+            type="text"
+            placeholder="Nutrient Content "
+            value={nutrientContent}
+            onChange={(e) => handleInputChange(e, setNutrientContent)}
+          />
 
-        <StatsInput
-          type="text"
-          placeholder="Soil Moisture"
-          value={soilMoisture}
-          onChange={(e) => handleInputChange(e, setSoilMoisture)}
-        />
-        <StatsInput
-          type="text"
-          placeholder="Temperature"
-          value={temperature}
-          onChange={(e) => handleInputChange(e, setTemperature)}
-        />
-        <div>
-          <SubmitButton label="Submit" onClick={handleSubmitClick} />
+          <StatsInput
+            type="text"
+            placeholder="Soil Moisture"
+            value={soilMoisture}
+            onChange={(e) => handleInputChange(e, setSoilMoisture)}
+          />
+          <StatsInput
+            type="text"
+            placeholder="Temperature"
+            value={temperature}
+            onChange={(e) => handleInputChange(e, setTemperature)}
+          />
+          <div>
+            <SubmitButton label="Submit" onClick={handleSubmitClick} />
+          </div>
         </div>
-      </div>
-      <div className="rightContainer">
-        <div>
-          <MapComponent /> {/* Include the MapComponent here */}
+        <div className="rightContainer">
+          <div>
+            <MapComponent /> {/* Include the MapComponent here */}
+          </div>
         </div>
-      </div>
-      
       </div>
     </div>
   );
