@@ -5,7 +5,11 @@ import { MapContainer, TileLayer } from "react-leaflet";
 
 const MapComponent = () => {
   return (
-    <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: "400px", width: "400px" }}>
+    <MapContainer
+      center={[37.4419, -122.143]}
+      zoom={13}
+      style={{ height: "400px", width: "400px" }}
+    >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         //did not really want to include the links to the map that we are currently populating with

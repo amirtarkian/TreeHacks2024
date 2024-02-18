@@ -5,6 +5,7 @@ import StatsInput from "../components/StatsInput/StatsInput";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 import "../pages/Home.css";
 import AppTitle from "../components/AppTitle/AppTitle";
+import ImageUpload from "../components/ImageUpload/ImageUpload";
 
 export default function Home() {
   // State for storing input values
@@ -13,7 +14,28 @@ export default function Home() {
   const [nutrientContent, setNutrientContent] = useState("");
   const [soilMoisture, setSoilMoisture] = useState("");
   const [temperature, setTemperature] = useState("");
+  const [file, setFile] = useState("");
+  const [showMap, setShowMap] = useState(false);
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0]; // Access the file
+    if (file) {
+      setFile(file);
+      console.log("File name: ", file.name); // Print out the file name
+    }
+  };
+
+  const handleSubmit = () => {
+    // Step 4
+    if (file) {
+      console.log("File name: ", file.name);
+      setShowMap(true);
+    } else {
+      console.log("No file selected.");
+    }
+
+    console.log("button clicked");
+  };
   // State for storing the selected option from the dropdown
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -30,10 +52,6 @@ export default function Home() {
 
   const handleDropdownChange = (e) => {
     setSelectedOption(e.target.value);
-  };
-
-  const handleSubmitClick = () => {
-    console.log("Submit button clicked");
   };
 
   return (
@@ -91,14 +109,11 @@ export default function Home() {
             value={temperature}
             onChange={(e) => handleInputChange(e, setTemperature)}
           />
-          <div>
-            <SubmitButton label="Submit" onClick={handleSubmitClick} />
-          </div>
         </div>
         <div className="rightContainer">
-          <div>
-            <MapComponent /> {/* Include the MapComponent here */}
-          </div>
+          <ImageUpload onFileSelect={(selectedFile) => setFile(selectedFile)} />
+          {showMap && <MapComponent />}
+          <SubmitButton label="Submit" onClick={handleSubmit} />
         </div>
       </div>
     </div>

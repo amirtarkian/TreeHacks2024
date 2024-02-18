@@ -1,39 +1,57 @@
-/* home.css */
-
+/* Centering the parent container */
 .parentContainer {
   display: flex;
-
-  justify-content: space-between;
-  flex-direction: column; /* Distribute items evenly along the main axis */
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-.leftContainer {
-  flex: 1;
+/* Centering content within the parent */
+.bannerContainer,
+.titleContainer,
+.leftContainer,
+.rightContainer,
+.imageUploadContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
+.leftContainer,
 .rightContainer {
-  flex: 1;
-}
-
-.dropdownContainer {
-  margin-bottom: 20px; /* Add some space between dropdown and inputs */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .statsinput {
-  padding: 10px;
-  max-width: 80%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%; /* Adjust width as needed */
 }
 
-.map-container {
-  width: 80%; /* Adjust width as needed */
-  margin-top: 20px;
-  margin-right: 20px; /* Add margin to the right side */
+.titleContainer,
+.dropdownContainer,
+.imageUploadContainer {
+  text-align: center;
 }
+
+/* Ensure the Map and ImageUpload components are centered */
+.mapComponent,
+.imageUploadContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Adjust if needed */
+}
+
 .bannerContainer img {
   width: 100%;
   max-height: 450px; /* Desired height */
   object-fit: cover; /* Adjust the fit */
+}
+
+.dropdownContainer {
+  width: 50%;
+  margin-bottom: 20px;
 }
