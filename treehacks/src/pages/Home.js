@@ -1,12 +1,11 @@
 import React, { useState } from "react";
+import AppTitle from "../components/AppTitle/AppTitle";
 import Dropdown from "../components/Dropdown/Dropdown";
+import ImageUpload from "../components/ImageUpload/ImageUpload";
 import MapComponent from "../components/Map/Map";
 import StatsInput from "../components/StatsInput/StatsInput";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 import "../pages/Home.css";
-import AppTitle from "../components/AppTitle/AppTitle";
-import ImageUpload from "../components/ImageUpload/ImageUpload";
-
 export default function Home() {
   // State for storing input values
   const [soilType, setSoilType] = useState("");
@@ -16,9 +15,7 @@ export default function Home() {
   const [temperature, setTemperature] = useState("");
   const [file, setFile] = useState("");
   const [showMap, setShowMap] = useState(false);
-
   //testing
-
   const handleFileChange = (event) => {
     const file = event.target.files[0]; // Access the file
     if (file) {
@@ -26,16 +23,19 @@ export default function Home() {
       console.log("File name: ", file.name); // Print out the file name
     }
   };
-
   const handleSubmit = () => {
     // Step 4
+    const inputs = {
+      soilMoisture: 2,
+      temperature: 70,
+      soilPH: 6,
+    };
     if (file) {
       console.log("File name: ", file.name);
       setShowMap(true);
     } else {
       console.log("No file selected.");
     }
-
     console.log("button clicked");
     //testing backend
     fetch("/api/test")
@@ -46,22 +46,29 @@ export default function Home() {
   };
   // State for storing the selected option from the dropdown
   const [selectedOption, setSelectedOption] = useState("");
-
+  // State for storying the selected option from the dropdown for the soil type
+  const [selectedOptionsSoil, setSelectedOption2] = useState("");
   // Options for the dropdown
   const options = [
     { label: "Corn", value: "corn" },
     { label: "Tomatoes", value: "tomatoes" },
   ];
-
+  //options for the soil drop down
+  const optionsSoil = [
+    { label: "Sand", value: "sand" },
+    { label: "Loam", value: "loam" },
+    { label: "Clay", value: "clay" },
+  ];
   // Separate handleChange functions for each input and the dropdown
   const handleInputChange = (e, setter) => {
     setter(e.target.value);
   };
-
   const handleDropdownChange = (e) => {
     setSelectedOption(e.target.value);
   };
-
+  const handleDropdownChange2 = (e) => {
+    setSelectedOption2(e.target.value);
+  };
   return (
     <div className="parentContainer">
       <div className="bannerContainer">
@@ -85,13 +92,11 @@ export default function Home() {
           />
         </div>
         <div className="statsinput">
-          <StatsInput
-            type="text"
-            placeholder="Soil Type"
-            value={soilType}
-            onChange={(e) => handleInputChange(e, setSoilType)}
+          <Dropdown
+            options={optionsSoil}
+            selected={selectedOptionsSoil}
+            onChange={handleDropdownChange2}
           />
-
           <StatsInput
             type="text"
             placeholder="Soil pH"
@@ -104,7 +109,6 @@ export default function Home() {
             value={nutrientContent}
             onChange={(e) => handleInputChange(e, setNutrientContent)}
           />
-
           <StatsInput
             type="text"
             placeholder="Soil Moisture"
@@ -123,6 +127,7 @@ export default function Home() {
           {showMap && <MapComponent />}
           <SubmitButton label="Submit" onClick={handleSubmit} />
         </div>
+        <div></div>
       </div>
     </div>
   );
