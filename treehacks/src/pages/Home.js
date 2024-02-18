@@ -17,6 +17,8 @@ export default function Home() {
   const [file, setFile] = useState("");
   const [showMap, setShowMap] = useState(false);
 
+  //testing
+
   const handleFileChange = (event) => {
     const file = event.target.files[0]; // Access the file
     if (file) {
@@ -35,6 +37,12 @@ export default function Home() {
     }
 
     console.log("button clicked");
+    //testing backend
+    fetch("/api/test")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Data from API:", data);
+      });
   };
   // State for storing the selected option from the dropdown
   const [selectedOption, setSelectedOption] = useState("");
