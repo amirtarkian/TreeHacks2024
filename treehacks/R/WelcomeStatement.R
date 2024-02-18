@@ -1,9 +1,2 @@
-print("Welcome!")
-
-
-
-
-
-
-
-
+message <- "Welcome from R!"
+print(message)
