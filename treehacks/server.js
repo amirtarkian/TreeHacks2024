@@ -21,6 +21,7 @@ app.use(express.json());
 app.post("/submit", (req, res) => {
   const { soilPH } = req.body;
   console.log("Received soil PH:", soilPH); // Log the received soilPH
+
   var soilphjson = JSON.stringify(soilPH);
   console.log("Soil PH JSON:", soilphjson);
   fs.writeFile("soildata.json", soilphjson, "utf8", (err) => {
@@ -41,8 +42,39 @@ app.post("/submit", (req, res) => {
     const jsonData = JSON.parse(data);
     console.log("Soil PH JSON object:", jsonData);
   });
+  if (parseFloat(soilPH) < 6.0) {
+    console.log(
+      "Soil is acidic; Given these conditions, we do not recommend planting this crop"
+    );
+    returnJSON = {
+      should_plant: false,
+      message:
+        "Soil is acidic; Given these conditions, we do not recommend planting this crop",
+    };
+  } else if (parseFloat(soilPH) > 6.8) {
+    console.log(
+      "Soil is alkaline; Given these conditions, we do not recommend planting this crop"
+    );
+    returnJSON = {
+      should_plant: false,
+      message:
+        "Soil is alkaline; Given these conditions, we do not recommend planting this crop",
+    };
+  } else {
+    console.log(
+      "Soil is neutral; Given these conditions, we recommend planting this crop"
+    );
+    returnJSON = {
+      should_plant: true,
+      message:
+        "Soil is neutral; Given these conditions, we recommend planting this crop",
+    };
+  }
 
-  res.json({ message: "Soil PH data received successfully in backend" });
+  // Send the returnJSON object back to the frontend
+  res.json(returnJSON);
+
+  // res.json({ message: "Soil PH data received successfully in backend" });
 });
 
 //receiving from r script

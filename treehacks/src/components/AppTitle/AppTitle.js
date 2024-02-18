@@ -3,7 +3,7 @@ import "./AppTitle.css"; // Ensure your CSS path is correct
 
 const AppTitle = () => {
   const fullText1 = "Welcome to    ";
-  const fullText2 = "TerraSomething. . .";
+  const fullText2 = "TerraMetrix. . .";
   const [text1, setText1] = useState("");
   const [text2, setText2] = useState("");
   const [isFirstLineComplete, setIsFirstLineComplete] = useState(false);

@@ -4,9 +4,38 @@
   grid-template-columns: repeat(2, 1fr); /* Creates two columns */
   gap: 20px; /* Space between grid items */
   padding: 20px; /* Padding around the grid */
+  justify-content: center;
 }
 
 .grid-item img {
   width: 70%; /* Make images fill their container */
   height: auto; /* Maintain aspect ratio */
+}
+
+/* Output.css */
+h2 {
+  color: green; /* Makes the text green */
+  text-align: center; /* Centers the text horizontally */
+  font-size: 2rem; /* Makes the text larger; adjust as needed */
+  margin-top: 20px; /* Adds some space above the h2; adjust as needed */
+  margin-bottom: 20px; /* Adds some space below the h2; adjust as needed */
+}
+
+.results {
+  text-align: center; /* Centers the text horizontally */
+  font-size: 30px; /* Makes the text larger; adjust as needed */
+  margin-top: 20px; /* Adds some space above the h2; adjust as needed */
+  margin-bottom: 20px;
+}
+
+.map {
+  display: flex;
+  justify-content: center;
+}
+.parentcontainer {
+  justify-content: center;
+
+  /* Centers the map horizontally */
+  align-items: center; /* Centers the map vertically if needed */
+  margin: auto;
 }

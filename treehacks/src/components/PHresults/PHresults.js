@@ -11,10 +11,10 @@ function ResultsComponent() {
   }, []);
 
   return (
-    <div>
+    <div className="results">
       {results ? (
         <div>
-          <p>Received data: {JSON.stringify(results)}</p>
+          <p>Soil Crop Analysis: {JSON.stringify(results)}</p>
         </div>
       ) : (
         <p>Loading results...</p>
