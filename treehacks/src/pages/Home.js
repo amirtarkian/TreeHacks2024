@@ -50,11 +50,13 @@ export default function Home() {
   const [selectedOptionsSoil, setSelectedOption2] = useState("");
   // Options for the dropdown
   const options = [
+    { label: "Select a Crop", value: "" },
     { label: "Corn", value: "corn" },
     { label: "Tomatoes", value: "tomatoes" },
   ];
   //options for the soil drop down
   const optionsSoil = [
+    { label: "Select a Soil Type", value: "" },
     { label: "Sand", value: "sand" },
     { label: "Loam", value: "loam" },
     { label: "Clay", value: "clay" },
