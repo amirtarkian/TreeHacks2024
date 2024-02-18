@@ -13,16 +13,44 @@ export default function Home() {
   const [nutrientContent, setNutrientContent] = useState("");
   const [soilMoisture, setSoilMoisture] = useState("");
   const [temperature, setTemperature] = useState("");
-  const [file, setFile] = useState("");
+  const [geojsonData, setGeojsonData] = useState(null);
   const [showMap, setShowMap] = useState(false);
   //testing
+
+  
+  const handleUpload = () => {
+    if (!geojsonData) {
+      console.log("No GeoJSON data selected");
+      return;
+    }
+    // Send geojsonData to your R script or perform other actions
+    console.log("GeoJSON Data:", geojsonData);
+  };
+
+  //Rewriting the handle filechange function 
   const handleFileChange = (event) => {
-    const file = event.target.files[0]; // Access the file
+    const file = event.target.files[0];
     if (file) {
-      setFile(file);
-      console.log("File name: ", file.name); // Print out the file name
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsedGeoJson = JSON.parse(e.target.result);
+          // Validate if the parsed data is GeoJSON
+          if (parsedGeoJson && parsedGeoJson.type === "FeatureCollection") {
+            setGeojsonData(parsedGeoJson);
+            console.log("GeoJSON Data:", parsedGeoJson);
+          } else {
+            console.error("Invalid GeoJSON format");
+          }
+        } catch (error) {
+          console.error("Error parsing GeoJSON file:", error);
+        }
+      };
+      reader.readAsText(file);
     }
   };
+
+
   const handleSubmit = () => {
     // Step 4
     const inputs = {
@@ -30,12 +58,12 @@ export default function Home() {
       temperature: 70,
       soilPH: 6,
     };
-    if (file) {
-      console.log("File name: ", file.name);
-      setShowMap(true);
-    } else {
-      console.log("No file selected.");
-    }
+    // if (file) {
+    //   console.log("File name: ", file.name);
+    //   setShowMap(true);
+    // } else {
+    //   console.log("No file selected.");
+    // }
     console.log("button clicked");
     //testing backend
     fetch("/api/test")
@@ -125,7 +153,7 @@ export default function Home() {
           />
         </div>
         <div className="rightContainer">
-          <ImageUpload onFileSelect={(selectedFile) => setFile(selectedFile)} />
+          <ImageUpload onFileSelect={handleFileChange} accept="geojson" />
           {showMap && <MapComponent />}
           <SubmitButton label="Submit" onClick={handleSubmit} />
         </div>
