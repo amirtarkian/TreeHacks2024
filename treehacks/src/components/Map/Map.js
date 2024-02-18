@@ -6,15 +6,15 @@ import { MapContainer, TileLayer } from "react-leaflet";
 const MapComponent = () => {
   return (
     <MapContainer
-      center={[37.4419, -122.143]}
-      zoom={13}
+      center={[31.2903271, -101.2400527]}
+      zoom={18}
       style={{ height: "400px", width: "400px" }}
     >
       <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        //did not really want to include the links to the map that we are currently populating with
-        // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+        attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
       />
+
       {/* <Marker position={[51.505, -0.09]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.

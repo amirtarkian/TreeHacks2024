@@ -87,7 +87,7 @@
     
     # CROP AREA TO BB 
     #BB<- st_read('/Volumes/big_game/Erin_OConnell/BB.shp')
-    BB<- st_read('/Users/test/Downloads/rb_aoi/rb_aoi.shp')
+    BB<- st_read('/Users/conniely/Downloads/rb_aoi/rb_aoi.shp')
     RB.JAN <- crop(rJan, BB)
     plot(RB.JAN)
     
@@ -108,11 +108,11 @@
     dates <- lubridate::as_date(dates)
     
     # Plot that stuff
-    plot(dates, cumDelta, type = 'l',
+    map1 <- plot(dates, cumDelta, type = 'l',
          main = 'Rocker b Ranch Total Rainfall \n 2020-2022',
          ylab = 'Cumulative Flux (C)', xlab = 'Day')
     
-    ggplot()+ aes(x= dates, y= cumDelta) +
+   map2 <- ggplot()+ aes(x= dates, y= cumDelta) +
       geom_line( color = "blue", size=1.2) +
       xlab(paste0('Date')) +
       ylab(paste0('Total Precipitation')) +
@@ -123,3 +123,4 @@
       scale_x_date(date_breaks = "2 months") 
     
     
+

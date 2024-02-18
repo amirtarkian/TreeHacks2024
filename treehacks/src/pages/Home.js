@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import AppTitle from "../components/AppTitle/AppTitle";
 import Dropdown from "../components/Dropdown/Dropdown";
 import ImageUpload from "../components/ImageUpload/ImageUpload";
 import MapComponent from "../components/Map/Map";
 import StatsInput from "../components/StatsInput/StatsInput";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
+
 import "../pages/Home.css";
 export default function Home() {
   // State for storing input values
+  const navigate = useNavigate();
   const [soilType, setSoilType] = useState("");
   const [soilPH, setSoilPH] = useState("");
   const [nutrientContent, setNutrientContent] = useState("");
@@ -24,26 +28,48 @@ export default function Home() {
     }
   };
   const handleSubmit = () => {
-    // Step 4
-    const inputs = {
-      soilMoisture: 2,
-      temperature: 70,
-      soilPH: 6,
-    };
+    const dataToSend = { soilPH: soilPH };
+
     if (file) {
       console.log("File name: ", file.name);
       setShowMap(true);
     } else {
       console.log("No file selected.");
     }
-    console.log("button clicked");
-    //testing backend
-    fetch("/api/test")
-      .then((response) => response.json())
+    console.log("Submitting Soil pH:", soilPH);
+
+    // //testing backend
+    // fetch("/api/test")
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log("Data from API:", data);
+    //   });
+
+    //testing ph send
+    fetch("http://localhost:5003/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((data) => {
-        console.log("Data from API:", data);
+        console.log("Success:", data);
+        // Handle success here (e.g., show a success message or update state)
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        // Handle errors here (e.g., show an error message)
       });
+    navigate("/output");
   };
+
   // State for storing the selected option from the dropdown
   const [selectedOption, setSelectedOption] = useState("");
   // State for storying the selected option from the dropdown for the soil type
@@ -126,7 +152,7 @@ export default function Home() {
         </div>
         <div className="rightContainer">
           <ImageUpload onFileSelect={(selectedFile) => setFile(selectedFile)} />
-          {showMap && <MapComponent />}
+          {showMap}
           <SubmitButton label="Submit" onClick={handleSubmit} />
         </div>
         <div></div>

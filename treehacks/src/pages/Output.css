@@ -1,0 +1,12 @@
+/* Output.css */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Creates two columns */
+  gap: 20px; /* Space between grid items */
+  padding: 20px; /* Padding around the grid */
+}
+
+.grid-item img {
+  width: 70%; /* Make images fill their container */
+  height: auto; /* Maintain aspect ratio */
+}
