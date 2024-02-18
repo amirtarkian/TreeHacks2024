@@ -39,3 +39,11 @@ h2 {
   align-items: center; /* Centers the map vertically if needed */
   margin: auto;
 }
+
+.results {
+  text-align: center; /* Centers the text horizontally */
+  font-size: 2rem; /* Makes the text larger; adjust as needed */
+  margin-top: 20px; /* Adds some space above the h2; adjust as needed */
+  margin-bottom: 20px; /* Adds some space below the h2; adjust as needed */
+  margin-left: 60px;
+}

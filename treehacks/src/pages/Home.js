@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Output from "./Output";
 import AppTitle from "../components/AppTitle/AppTitle";
 import Dropdown from "../components/Dropdown/Dropdown";
 import ImageUpload from "../components/ImageUpload/ImageUpload";
@@ -9,8 +9,10 @@ import StatsInput from "../components/StatsInput/StatsInput";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
 
 import "../pages/Home.css";
+
 export default function Home() {
   // State for storing input values
+  const [result, setResult] = useState(null);
   const navigate = useNavigate();
   const [soilType, setSoilType] = useState("");
   const [soilPH, setSoilPH] = useState("");
@@ -28,7 +30,14 @@ export default function Home() {
     }
   };
   const handleSubmit = () => {
-    const dataToSend = { soilPH: soilPH };
+    const dataToSend = {
+      crop: selectedOption,
+      soilPH: soilPH,
+      soilType: selectedOptionsSoil,
+      nutrientContent: nutrientContent,
+      soilMoisture: soilMoisture,
+      temperature: temperature,
+    };
 
     if (file) {
       console.log("File name: ", file.name);
@@ -36,7 +45,7 @@ export default function Home() {
     } else {
       console.log("No file selected.");
     }
-    console.log("Submitting Soil pH:", soilPH);
+    console.log("Submitting form with data to server:", dataToSend);
 
     // //testing backend
     // fetch("/api/test")
@@ -46,6 +55,7 @@ export default function Home() {
     //   });
 
     //testing ph send
+    navigate("/output");
     fetch("http://localhost:5003/submit", {
       method: "POST",
       headers: {
@@ -60,27 +70,27 @@ export default function Home() {
         return response.json();
       })
       .then((data) => {
-        console.log("Success:", data);
+        console.log("Success from Backend:", data.message);
+        let result = data.message;
+        navigate("/output", { state: { message: result } });
+
         // Handle success here (e.g., show a success message or update state)
       })
       .catch((error) => {
         console.error("Error:", error);
         // Handle errors here (e.g., show an error message)
       });
-    navigate("/output");
   };
 
-  // State for storing the selected option from the dropdown
   const [selectedOption, setSelectedOption] = useState("");
-  // State for storying the selected option from the dropdown for the soil type
   const [selectedOptionsSoil, setSelectedOption2] = useState("");
-  // Options for the dropdown
   const options = [
     { label: "Select a Crop", value: "" },
     { label: "Corn", value: "corn" },
     { label: "Tomatoes", value: "tomatoes" },
+    { label: "Soybean", value: "soybean" },
+    { label: "Oats", value: "oats" },
   ];
-  //options for the soil drop down
   const optionsSoil = [
     { label: "Select a Soil Type", value: "" },
     { label: "Sand", value: "sand" },
