@@ -25,11 +25,42 @@ export default function Home() {
   };
   const handleSubmit = () => {
     // Step 4
-    const inputs = {
+    const thresholdsTomatoe = {
       soilMoisture: 2,
       temperature: 70,
       soilPH: 6,
+      soilType: loam, 
     };
+    
+    // Step 3: Check each input against its threshold
+    for (const [key, value] of Object.entries(inputs)) {
+      switch (key) {
+        case "soilType":
+          // Add logic to check soil type if needed
+          break;
+        case "soilPH":
+          if (value < thresholdsTomatoe.soilPH) {
+            console.log(`Warning: Soil pH (${value}) is below acceptable threshold (${thresholds.soilPH}).`);
+            // Handle warning for low pH
+          }
+          break;
+        case "soilMoisture":
+          if (value < thresholdsTomatoe.soilMoisture) {
+            console.log(`Warning: Soil moisture (${value}) is below acceptable threshold (${thresholds.soilMoisture}).`);
+            // Handle warning for low soil moisture
+          }
+          break;
+        case "temperature":
+          if (value < thresholdsTomatoe.temperature) {
+            console.log(`Warning: Temperature (${value}) is below acceptable threshold (${thresholds.temperature}).`);
+            // Handle warning for low temperature
+          }
+          break;
+        default:
+          break;
+      }
+    }
+    
     if (file) {
       console.log("File name: ", file.name);
       setShowMap(true);
